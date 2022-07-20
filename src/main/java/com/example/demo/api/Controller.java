@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.LoggerFactory;
+// import ch.qos.logback.classic.Logger;
+// import ch.qos.logback.classic.LoggerFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/v1")
