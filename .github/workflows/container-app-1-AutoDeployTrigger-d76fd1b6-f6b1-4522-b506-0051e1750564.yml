@@ -27,7 +27,7 @@ jobs:
       - name: Log in to container registry
         uses: docker/login-action@v1
         with:
-          registry: artus1containerappregistry.azurecr.io
+          registry: artus1containerregistry.azurecr.io
           username: ${{ secrets.CONTAINERAPP1_REGISTRY_USERNAME }}
           password: ${{ secrets.CONTAINERAPP1_REGISTRY_PASSWORD }}
 
