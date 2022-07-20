@@ -12,16 +12,17 @@ import ch.qos.logback.classic.LoggerFactory;
 @RequestMapping("/api/v1")
 class Controller {
 
-    private static final Logger logger 
-      = LoggerFactory.getLogger(Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
     @GetMapping("/hello")
     public String hello() {
+        logger.info("/hello request....");
         return "Hello world!";
     }
 
     @GetMapping("/hello/{name}")
     public String hello(@PathVariable() final String name) {
+        logger.info("/hello/{} request....", name);
         return "Hello " + name + "!";
     }
 
