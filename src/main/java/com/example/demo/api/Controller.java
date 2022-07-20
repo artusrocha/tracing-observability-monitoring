@@ -5,9 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerFactory;
+
 @RestController
 @RequestMapping("/api/v1")
 class Controller {
+
+    private static final Logger logger 
+      = LoggerFactory.getLogger(Controller.class);
 
     @GetMapping("/hello")
     public String hello() {
