@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: artus1containerappregistry.azurecr.io/container-app-1:${{ github.sha }}
+          tags: artus1containerregistry.azurecr.io/container-app-1:${{ github.sha }}
           file: ./Dockerfile
           context: ./
 
@@ -56,5 +56,5 @@ jobs:
         with:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
-            az containerapp registry set -n container-app-1 -g resource-group-container-app-1 --server artus1containerappregistry.azurecr.io --username  ${{ secrets.CONTAINERAPP1_REGISTRY_USERNAME }} --password ${{ secrets.CONTAINERAPP1_REGISTRY_PASSWORD }}
-            az containerapp update -n container-app-1 -g resource-group-container-app-1 --image artus1containerappregistry.azurecr.io/container-app-1:${{ github.sha }}
+            az containerapp registry set -n container-app-1 -g resource-group-container-app-1 --server artus1containerregistry.azurecr.io --username  ${{ secrets.CONTAINERAPP1_REGISTRY_USERNAME }} --password ${{ secrets.CONTAINERAPP1_REGISTRY_PASSWORD }}
+            az containerapp update -n container-app-1 -g resource-group-container-app-1 --image artus1containerregistry.azurecr.io/container-app-1:${{ github.sha }}
