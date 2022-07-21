@@ -10,5 +10,6 @@ RUN ./mvnw clean install
 FROM eclipse-temurin:17-jre-jammy
 WORKDIR /opt/app
 EXPOSE 8080
-COPY --from=builder /opt/app/target/*.jar /opt/app/*.jar
-ENTRYPOINT ["java", "-jar", "/opt/app/*.jar" ]
+COPY --from=builder /opt/app/target/*.jar /opt/app/app.jar
+COPY ./monitor /opt/app/monitor
+ENTRYPOINT ["java", "-javaagent:/opt/app/applicationinsights-agent-3.3.0.jar", "-jar", "/opt/app/app.jar" ]
