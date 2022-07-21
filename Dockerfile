@@ -11,5 +11,5 @@ FROM eclipse-temurin:17-jre-jammy
 WORKDIR /opt/app
 EXPOSE 8080
 COPY --from=builder /opt/app/target/*.jar /opt/app/app.jar
-COPY ./monitor /opt/app/monitor
-ENTRYPOINT ["java", "-javaagent:/opt/app/applicationinsights-agent-3.3.0.jar", "-jar", "/opt/app/app.jar" ]
+COPY ./monitor /opt/monitor
+ENTRYPOINT ["java", "-javaagent:/opt/monitor/applicationinsights-agent-3.3.0.jar", "-jar", "/opt/app/app.jar" ]
