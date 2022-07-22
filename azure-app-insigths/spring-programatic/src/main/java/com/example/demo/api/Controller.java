@@ -2,8 +2,11 @@ package com.example.demo.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
 
 // import ch.qos.logback.classic.Logger;
 // import ch.qos.logback.classic.LoggerFactory;
@@ -11,11 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+
 @RestController
-@RequestMapping("/api/v1")
 class Controller {
 
     private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+
+    @GetMapping("/")
+    public Map<String, Object> root(@RequestHeader HttpHeaders headers,
+                                    @RequestParam Map<String,String> params) {
+        logger.info("headers: {}, params: {}", headers, params);
+        return Map.of("headers", headers, "params", params);
+    }
 
     @GetMapping("/hello")
     public String hello() {
