@@ -14,4 +14,4 @@ WORKDIR /app
 EXPOSE 8080
 COPY --from=builder /app/target/*.jar ./app.jar
 COPY ./monitor ./
-ENTRYPOINT ["java", "-javaagent:/app/monitor/applicationinsights-agent-3.3.0.jar", "-jar", "app.jar" ]
+ENTRYPOINT ["java", "-javaagent:/app/applicationinsights-agent-3.3.0.jar", "-jar", "app.jar" ]
