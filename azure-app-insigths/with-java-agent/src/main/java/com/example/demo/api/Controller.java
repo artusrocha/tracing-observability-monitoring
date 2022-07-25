@@ -16,16 +16,25 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
+import com.example.demo.handler.Handler;
+
 @RestController
 class Controller {
 
     private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
+    private final Handler handler;
+
+    Controller (final Handler handler) {
+        this.handler = handler;
+    }
+
     @GetMapping("/")
     public Map<String, Object> root(@RequestHeader HttpHeaders headers,
                                     @RequestParam Map<String,String> params) {
         logger.info("headers: {}, params: {}", headers, params);
-        return Map.of("headers", headers, "params", params);
+        final String resp = handler.handleIt("test");
+        return Map.of("headers", headers, "params", params, "internal_resp", resp);
     }
 
     @GetMapping("/hello")
