@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpHeaders;
 
-// import ch.qos.logback.classic.Logger;
-// import ch.qos.logback.classic.LoggerFactory;
+import static net.logstash.logback.argument.StructuredArguments.kv;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +31,7 @@ class Controller {
     @GetMapping("/")
     public Map<String, Object> root(@RequestHeader HttpHeaders headers,
                                     @RequestParam Map<String,String> params) {
-        logger.info("headers: {}, params: {}", headers, params);
+        logger.info("root request", kv("http_headers", headers), kv("http_params", params));
         final String resp = handler.handleIt("test");
         return Map.of("headers", headers, "params", params, "internal_resp", resp);
     }
@@ -45,7 +44,7 @@ class Controller {
 
     @GetMapping("/hello/{name}")
     public String hello(@PathVariable() final String name) {
-        logger.info("/hello/{} request....", name);
+        logger.info("/hello/{} request....", name, kv("name", name));
         return "Hello " + name + "!";
     }
 
